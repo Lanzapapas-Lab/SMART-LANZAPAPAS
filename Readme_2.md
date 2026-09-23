@@ -137,6 +137,7 @@ smart-cannon/
 ├── firmware/          # Código C/C++ del ESP32
 ├── software/          # Servidor Python, MQTT y Dashboard
 ├── hardware/          # Materiales y componentes necesarios
+├── results/           # Conclusiones de las versiones
 ├── data/              # Datasets de los disparos experimentales
 ├── README.md
 └── LICENSE
