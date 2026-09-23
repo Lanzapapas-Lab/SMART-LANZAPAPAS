@@ -1,0 +1,142 @@
+# 🥔 Smart Lanzapapas (Telemetría & IoT Spud Gun)
+
+### High-Pressure Potato Cannon with ESP32 Telemetry and Control Platform
+
+> **Status:** 🟡 Early development
+
+Smart Cannon es un proyecto de ingeniería experimental enfocado en la instrumentación, control y análisis de datos del lanzamiento de un proyectil de patata. 
+
+El objetivo principal es llevar al límite la potencia de un cañón ayudándonos de un **ESP32** para calcular el **porcentaje de gas óptimo**, monitorizar la **presión de la explosión** y enviar toda la telemetría vía **Wi-Fi**.
+
+---
+
+## ⚠️ Safety Warning
+
+Este repositorio tiene un propósito puramente **educativo y de ingeniería**. Trabajar con gases inflamables y presión conlleva riesgos. Toda experimentación debe realizarse en exteriores, con gafas de seguridad y mediante ignición remota.
+
+---
+
+## 💰 Presupuesto y Materiales
+
+El coste total de los materiales del cañón y el sistema de ignición es de **82,79 €**[cite: 1].
+
+### 🛠️ Hardware Base del Cañón y Combustión
+* **Tubo PVC encolar ø125mm 10 atmósferas** - Cámara de combustión (8,27 €)[cite: 1]
+* **Tapón PVC ø125mm encolar PN16** - Cierre trasero (14,04 €)[cite: 1]
+* **Tubo PVC encolar ø63mm 16 atmósferas** - Cañón (3,90 €)[cite: 1]
+* **Reducción cónica PVC ø125-ø63mm PN16** - Unión de cámara y cañón (7,75 €)[cite: 1]
+* **ADHESIVO PVC-50 PRESIÓN** - Sellado de piezas (4,55 €)[cite: 1]
+* **Válvula agrícola - Tractor TR618A** - Entrada de gas/aire (2,09 €)[cite: 1]
+* **Urban Gas para Mecheros Rellenable (300ml)** - Combustible (5,99 €)[cite: 1]
+
+### ⚡ Sistema de Ignición de Alta Tensión
+* **Bujía para motores de 4t Garland** - Generador de chispa (2,99 €)
+* **Generador de Alto Voltaje** - Elevador de tensión para crear el arco (8,93 €)
+* **Cable de Alto Voltaje** - Aislamiento de silicona para evitar fugas eléctricas (6,99 €)
+* **Pipa de bujía y Abrazadera metálica** - Conexiones seguras a la bujía (11,99 €)
+* **Pila 3,7 V** - Alimentación independiente para el generador de arco (5,30 €)
+
+### 📡 Electrónica y Control (Telecomunicaciones -*Análisis de Datos*)
+* Microcontrolador ESP32 (Wi-Fi integrado)
+* Sensor de Presión (para medir el pico de la explosión)
+* Sensor de Temperatura
+* Relé optoacoplado (para disparar el Generador de Alto Voltaje remotamente)
+* IMU (para medir el retroceso del cañón)
+
+---
+
+## 🛠️ Cómo implementarlo (Sistema de Ignición)
+
+Para integrar los nuevos componentes de alto voltaje de forma segura y prepararlos para el control del ESP32, sigue estos pasos:
+
+1. **Alimentación del módulo:** Conecta los cables de entrada del **Generador de Alto Voltaje** a la **Pila de 3,7 V**. En medio del cable positivo de la pila, instala el relé (que será controlado por el ESP32) o un pulsador manual temporal.
+2. **Conexión de Alta Tensión (Positivo):** Empalma uno de los cables de salida del Generador al **Cable de Alto Voltaje** (asegura la unión con cinta aislante gruesa o termorretráctil). Conecta el otro extremo de este cable a la **Pipa de bujía**, y encaja la pipa firmemente en la punta superior de la bujía.
+3. **Conexión a Masa (Negativo):** Coge el otro cable de salida del Generador de Alto Voltaje. Pela el extremo, enróllalo alrededor de la rosca exterior de la bujía y fíjalo fuertemente usando la **Abrazadera metálica**.
+4. **Aislamiento:** Asegúrate de que el Generador de Alto Voltaje y la Pila de 3,7 V queden montados en el exterior del tubo de PVC, lejos de la válvula de gas, usando bridas o velcro.
+
+---
+
+## 🏗️ Creación del Cañón sellado
+
+1. Cortar y lijar los tubos de PVC de 125mm y 63mm.
+2. Taladrar la cámara de 125mm para insertar la bujía y la válvula de tractor. Es vital asegurar un sellado perfecto y hermético (usando teflón y epoxi si es necesario) para mantener la presión de la explosión y evitar fugas.
+3. Ensamblar todas las piezas usando el adhesivo de PVC para presión. Dejar secar completamente durante **al menos 24 horas** para garantizar la integridad estructural antes de realizar cualquier prueba.
+
+---
+
+## 📡 Conceptos Core de Teleco y Electrónica
+
+El verdadero reto de este proyecto es la plataforma IoT montada sobre el cañón:
+
+1. **Cálculo de Gas Óptimo:** Mediante sensores, el sistema calcula la mezcla estequiométrica perfecta midiendo la presión y temperatura antes de la ignición.
+2. **Telemetría Wi-Fi (MQTT):** El ESP32 envía los datos de cada disparo en tiempo real a un Dashboard para su análisis.
+3. **Control de Ignición:** Disparo remoto y seguro controlado desde un servidor web o app móvil activando el relé del Generador de Alto Voltaje.
+4. **Análisis de la Explosión:** Adquisición de datos a alta frecuencia (DSP) del pico de presión en la cámara en el milisegundo de la deflagración.
+
+---
+
+## 🏗️ Arquitectura del Sistema
+
+```text
+                         ┌─────────────────────┐
+                         │     DASHBOARD       │
+                         │ (Grafana / Web UI)  │
+                         └──────────┬──────────┘
+                                    │ Wi-Fi
+                         ┌──────────▼──────────┐
+                         │     IoT BACKEND     │
+                         │    (MQTT Broker)    │
+                         └──────────┬──────────┘
+                                    │ MQTT
+                    ┌───────────────▼───────────────┐
+                    │             ESP32             │
+                    │      (Control & Telemetry)    │
+                    │                               │
+                    │  [Pressure]  [Temperature]    │
+                    │  [Ignition Relay]  [IMU]      │
+                    └───────────────────────────────┘
+```
+## Tecnología
+
+*  ESP32, python, PlatformIO
+* **Comunicaciones:** Wi-Fi
+* **Backend y Datos:** -----
+* **Análisis y CV:** -----
+* **Hardware:** -------
+
+---
+
+## 📋 Roadmap de Desarrollo
+
+### Fase 1: Prototipo Físico y Hardware
+* [ ] Construcción del cañón de PVC sellado.
+* [ ] Implementación del sistema de ignición por alto voltaje.
+
+### Fase 2: Instrumentación Base (Actual)
+* [ ] Programación del ESP32.
+* [ ] Integración y calibración del sensor de presión y relé de disparo.
+* [ ] Adquisición local de datos en tarjeta SD.
+
+### Fase 3: IoT y Dashboard
+* [ ] Integración de MQTT y Wi-Fi.
+* [ ] Despliegue del Backend y Dashboard para disparo remoto.
+
+### Fase 4: Análisis Avanzado
+* [ ] Cálculo dinámico del volumen de gas óptimo.
+* [ ] Fusión de sensores (IMU + Presión) y análisis de trayectoria con cámaras.
+
+---
+
+## 📂 Estructura del Repositorio
+
+Los datos experimentales de cada disparo (presión, retroceso, gas usado) se guardarán en `data/` separados del código fuente.
+
+```text
+smart-cannon/
+├── docs/              # Documentación y esquemas eléctricos
+├── firmware/          # Código C/C++ del ESP32
+├── software/          # Servidor Python, MQTT y Dashboard
+├── hardware/          # Materiales y componentes necesarios
+├── data/              # Datasets de los disparos experimentales
+├── README.md
+└── LICENSE
