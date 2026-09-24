@@ -10,17 +10,17 @@ El objetivo principal es llevar al límite la potencia de un cañón de patatas 
 
 ---
 
-## ⚠️ Safety Warning
+##  Safety Warning
 
 Este repositorio tiene un propósito puramente **educativo y de ingeniería**. Trabajar con gases inflamables y presión conlleva riesgos. Toda experimentación debe realizarse en exteriores, con gafas de seguridad y mediante ignición remota.
 
 ---
 
-## 💰 Presupuesto y Materiales
+##  Presupuesto y Materiales
 
 El coste total de los materiales del cañón y el sistema de ignición es de **82,79 €**[cite: 1].
 
-### 🛠️ Hardware Base del Cañón y Combustión
+###  Hardware Base del Cañón y Combustión
 * **Tubo PVC encolar ø125mm 10 atmósferas** - Cámara de combustión (8,27 €)[cite: 1]
 * **Tapón PVC ø125mm encolar PN16** - Cierre trasero (14,04 €)[cite: 1]
 * **Tubo PVC encolar ø63mm 16 atmósferas** - Cañón (3,90 €)[cite: 1]
@@ -29,14 +29,14 @@ El coste total de los materiales del cañón y el sistema de ignición es de **8
 * **Válvula agrícola - Tractor TR618A** - Entrada de gas/aire (2,09 €)[cite: 1]
 * **Urban Gas para Mecheros Rellenable (300ml)** - Combustible (5,99 €)[cite: 1]
 
-### ⚡ Sistema de Ignición de Alta Tensión
+###  Sistema de Ignición de Alta Tensión
 * **Bujía para motores de 4t Garland** - Generador de chispa (2,99 €)
 * **Generador de Alto Voltaje** - Elevador de tensión para crear el arco (8,93 €)
 * **Cable de Alto Voltaje** - Aislamiento de silicona para evitar fugas eléctricas (6,99 €)
 * **Pipa de bujía y Abrazadera metálica** - Conexiones seguras a la bujía (11,99 €)
 * **Pila 3,7 V** - Alimentación independiente para el generador de arco (5,30 €)
 
-### 📡 Electrónica y Control (Telecomunicaciones -*Análisis de Datos*)
+###  Electrónica y Control (Telecomunicaciones -*Análisis de Datos*)
 * Microcontrolador ESP32 (Wi-Fi integrado)
 * Sensor de Presión (para medir el pico de la explosión)
 * Sensor de Temperatura
@@ -44,7 +44,7 @@ El coste total de los materiales del cañón y el sistema de ignición es de **8
 * IMU (para medir el retroceso del cañón)
 
 
-## 📡 Conceptos  de Teleco y Electrónica
+##  Conceptos  de Teleco y Electrónica
 
 Otro reto de este proyecto es la plataforma IoT montada sobre el cañón:
 
@@ -55,7 +55,7 @@ Otro reto de este proyecto es la plataforma IoT montada sobre el cañón:
 
 ---
 
-## 🏗️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 
 ```text
                          ┌─────────────────────┐
