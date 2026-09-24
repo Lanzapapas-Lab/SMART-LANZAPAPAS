@@ -18,7 +18,7 @@ Este repositorio tiene un propósito puramente **educativo y de ingeniería**. T
 
 ##  Presupuesto y Materiales
 
-El coste total de los materiales del cañón y el sistema de ignición es de **82,79 €**[cite: 1].
+El coste total de los materiales del cañón y el sistema de ignición es de **82,79 €**.
 
 ###  Hardware Base del Cañón y Combustión
 * **Tubo PVC encolar ø125mm 10 atmósferas** - Cámara de combustión (8,27 €)
