@@ -21,13 +21,13 @@ Este repositorio tiene un propósito puramente **educativo y de ingeniería**. T
 El coste total de los materiales del cañón y el sistema de ignición es de **82,79 €**[cite: 1].
 
 ###  Hardware Base del Cañón y Combustión
-* **Tubo PVC encolar ø125mm 10 atmósferas** - Cámara de combustión (8,27 €)[cite: 1]
-* **Tapón PVC ø125mm encolar PN16** - Cierre trasero (14,04 €)[cite: 1]
-* **Tubo PVC encolar ø63mm 16 atmósferas** - Cañón (3,90 €)[cite: 1]
-* **Reducción cónica PVC ø125-ø63mm PN16** - Unión de cámara y cañón (7,75 €)[cite: 1]
-* **ADHESIVO PVC-50 PRESIÓN** - Sellado de piezas (4,55 €)[cite: 1]
-* **Válvula agrícola - Tractor TR618A** - Entrada de gas/aire (2,09 €)[cite: 1]
-* **Urban Gas para Mecheros Rellenable (300ml)** - Combustible (5,99 €)[cite: 1]
+* **Tubo PVC encolar ø125mm 10 atmósferas** - Cámara de combustión (8,27 €)
+* **Tapón PVC ø125mm encolar PN16** - Cierre trasero (14,04 €)
+* **Tubo PVC encolar ø63mm 16 atmósferas** - Cañón (3,90 €).
+* **Reducción cónica PVC ø125-ø63mm PN16** - Unión de cámara y cañón (7,75 €).
+* **ADHESIVO PVC-50 PRESIÓN** - Sellado de piezas (4,55 €).
+* **Válvula agrícola - Tractor TR618A** - Entrada de gas/aire (2,09 €).
+* **Urban Gas para Mecheros Rellenable (300ml)** - Combustible (5,99 €).
 
 ###  Sistema de Ignición de Alta Tensión
 * **Bujía para motores de 4t Garland** - Generador de chispa (2,99 €)
